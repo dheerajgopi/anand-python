@@ -2,7 +2,11 @@ import os
 
 rootdir = '/home/dheeraj/Pictures'
 
-for dirname, subdir, files in os.walk(rootdir):
-    for fname in files:
-        print ('\t%s' %subdir)
-        print ('\t\t%s' %fname)
+walk = os.walk(rootdir)
+
+for dirname, subdir, files in walk:
+    print '\n' + dirname
+    for file_name in files:
+        print '-- --' + file_name
+        for dir_name in subdir:
+            print '-- --' + dir_name
