@@ -2,15 +2,20 @@ def readfiles(file_name):
     for line in open(file_name):
         yield line
 
-def grep(pattern, line):
-    if pattern in line:
-        yield line
+def chars_40(line):
+    l = line.strip()
+    if len(l) > 40:
+        return line
 
-def printline(line):
-    print line
+def showgrep(pattern, *files):
+    for file_name in files:
+        for line in readfiles(file_name):
+            l = chars_40(line)
+            if l != None:
+                yield l
 
-def showgrep(pattern, files):
-    for line in readfiles(files):
-        if grep(pattern, line):
-            printline(line)
-print showgrep('abcd', 'abcd.txt')
+
+a = showgrep('abcd', 'abcd.txt', 'efgh.txt')
+
+for i in a:
+    print i

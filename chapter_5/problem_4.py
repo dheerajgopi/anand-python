@@ -6,12 +6,10 @@ def pycount(directory):
         for filename in files:
             if filename.split('.')[-1] == 'py':
                 yield 1
-            else:
-                yield 0
 
 a = pycount('/home/dheeraj/repos/think-python')
 total = 0
 
 for i in a:
     total += i
-print total
+print '\nTotal number of python files :-  ', total, '\n'
