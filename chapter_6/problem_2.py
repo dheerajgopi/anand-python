@@ -1,23 +1,18 @@
-def flatten_dict(d, result = None, k = None):
-    if result == None:
-        result = {}
+def flatten_dict(d):
+    flat_dict = {}
 
-    if k == None:
-        k = []
+    def _flatten_dict(d, k = []):
+        for key, val in d.items():
 
-    for key in d:
-        k.append(key)
+            if isinstance(val, dict):
+                _flatten_dict(val, k + [key])
 
-        if isinstance(d[key], dict):
-            flatten_dict(d[key], result, k)
+            else:
+                new_key = '.'.join(k + [key])
+                flat_dict[new_key] = val
+    _flatten_dict(d)
+    return flat_dict
 
-        else:
-            new_key = '.'.join(k)
-            result[new_key] = d[key]
-            k = k[:-2]
-
-    return result
-
-a = {'a':1, 'b':{'x':2, 'y':{'u':4, 'v':5}}, 'c':6}
+a = {'a':1, 'c':{'x':2, 'y':{'u':4, 'v':5}}, 'b':6}
 
 print flatten_dict(a)

@@ -3,7 +3,9 @@ class Reverse_Iter:
         self.lst = lst
 
     def __iter__(self):
-        return Reverse_Iter_List(self.lst)
+        return self
+
+    def next(self
 
 class Reverse_Iter_List:
     def __init__(self, lst):
